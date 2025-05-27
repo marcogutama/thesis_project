@@ -1,0 +1,11 @@
+# Dockerfile.ollama
+FROM ollama/ollama:latest
+
+# Install required models
+RUN ollama pull codellama:13b
+RUN ollama pull deepseek-coder:6.7b  
+RUN ollama pull mistral:7b
+
+EXPOSE 11434
+
+CMD ["ollama", "serve"]
