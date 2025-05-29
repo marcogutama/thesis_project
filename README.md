@@ -11,10 +11,20 @@ docker run --name jenkins-blueocean --restart=on-failure --detach \
   --publish 8080:8080 --publish 50000:50000 \
   --volume jenkins-data:/var/jenkins_home \
   --volume jenkins-docker-certs:/certs/client:ro \
-  myjenkins-blueocean:2.504.1-1
+  myjenkins-blueocean
 
 # Get the Password
 docker exec jenkins-blueocean cat /var/jenkins_home/secrets/initialAdminPassword
+
+# Ingresar al contenedor
+docker exec -it jenkins-blueocean bash
+docker exec -u root -it jenkins-blueocean bash
+apt update && apt upgrade -y
+apt install python3 -y
+python3 --version
+
+# Ollama
+docker build -f Dockerfile.ollama -t myollama .
 
 # Referencias
 https://www.jenkins.io/doc/book/installing/docker/
