@@ -26,6 +26,20 @@ python3 --version
 # Ollama
 docker build -f Dockerfile.ollama -t myollama .
 
+# Ejecutar todo
+## Comando basico:
+docker-compose up
+
+## Ejecutar en segundo plano (detached mode):
+docker-compose up -d
+
+docker-compose down
+docker rmi thesis_project-ollama  # or whatever your image is named
+docker-compose up --build
+
+## Descargar modelo
+docker exec -it ollama ollama pull deepseek-coder:6.7b
+
 # Referencias
 https://www.jenkins.io/doc/book/installing/docker/
 https://www.youtube.com/watch?v=6YZvp2GwT0A&ab_channel=DevOpsJourney
