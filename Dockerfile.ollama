@@ -1,13 +1,11 @@
 # Dockerfile.ollama
 FROM ollama/ollama:latest
 
+EXPOSE 11434
+
 # Start ollama server in background and pull models
 RUN ollama serve & \
     sleep 10 && \
-    ollama pull codellama:13b && \
-    ollama pull deepseek-coder:6.7b && \
-    ollama pull mistral:7b && \
-    pkill ollama
+    ollama pull deepseek-coder:6.7b
 
-EXPOSE 11434
-CMD ["ollama", "serve"]
+CMD ["serve"]
