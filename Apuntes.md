@@ -40,7 +40,23 @@ docker-compose up --build
 ## Descargar modelo
 docker exec -it ollama ollama pull deepseek-coder:6.7b
 
+## Comandos docker
+docker-compose up: Inicia los servicios. Crea contenedores si no existen.
+docker-compose up -d:  Igual que arriba, pero en segundo plano.
+docker-compose start:  Solo inicia contenedores que ya fueron creados anteriormente. No crea nuevos contenedores ni redes.
+docker-compose stop: Detiene contenedores pero los deja existentes.
+docker-compose down: Detiene y elimina contenedores, redes y volúmenes anónimos creados por up. Después de esto, un up crea nuevos contenedores.
+
+## Jenkins plugins
+Maven integration
+Pipeline maven integration
+Pipeline utility steps
+
+## Java project example
+https://github.com/devopshint/jenkins-pipeline-example/tree/main/my-app
+
 # Referencias
 https://www.jenkins.io/doc/book/installing/docker/
 https://www.youtube.com/watch?v=6YZvp2GwT0A&ab_channel=DevOpsJourney
 https://github.com/devopsjourney1/jenkins-101
+https://www.youtube.com/watch?v=NcFIQejkRL8&ab_channel=DevOpsHint
