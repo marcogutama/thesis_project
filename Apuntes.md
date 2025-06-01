@@ -47,10 +47,18 @@ docker-compose start:  Solo inicia contenedores que ya fueron creados anteriorme
 docker-compose stop: Detiene contenedores pero los deja existentes.
 docker-compose down: Detiene y elimina contenedores, redes y volúmenes anónimos creados por up. Después de esto, un up crea nuevos contenedores.
 
+## Ingresar al contenedor para instalar comandos
+docker exec -u root -it thesis_project-jenkins-1 bash
+apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    pip3 install --upgrade pip
+
 ## Jenkins plugins
 Maven integration
 Pipeline maven integration
 Pipeline utility steps
+HTML Publisher
+Pipeline: Stage View
 
 ## Java project example
 https://github.com/devopshint/jenkins-pipeline-example/tree/main/my-app
