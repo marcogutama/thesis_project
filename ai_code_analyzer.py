@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 
 class OpenRouterAnalyzer:
     def __init__(self):
-        self.api_key = "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"
+        self.api_key = "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"
         self.base_url = "https://openrouter.ai/api/v1"
         self.headers = {
             "Authorization": f"Bearer {self.api_key}",
@@ -179,7 +179,7 @@ Responde en formato JSON:
         
         return results
     
-    def generate_report(self, ai_results, static_results):
+    def generate_report(self, ai_results):
         """Generar reporte HTML comprensivo"""
         
         # Calcular estadísticas
@@ -297,45 +297,6 @@ Responde en formato JSON:
         </div>
 """
         
-        # Agregar resultados de análisis estático
-        if static_results:
-            html_content += """
-        <div class="section">
-            <h2>🔍 Resultados de Análisis Estático</h2>
-"""
-            
-            if 'owasp' in static_results and static_results['owasp']:
-                html_content += "<h3>OWASP Dependency Check</h3>"
-                dependencies = static_results['owasp'].get('dependencies', [])
-                vulnerable_deps = [dep for dep in dependencies if dep.get('vulnerabilities')]
-                html_content += f"<p>Dependencias analizadas: {len(dependencies)}</p>"
-                html_content += f"<p>Dependencias vulnerables: {len(vulnerable_deps)}</p>"
-            
-            if 'spotbugs' in static_results and static_results['spotbugs']:
-                bugs = static_results['spotbugs'].get('bugs', [])
-                html_content += f"<h3>SpotBugs</h3><p>Bugs encontrados: {len(bugs)}</p>"
-        
-        html_content += """
-        </div>
-        
-        <div class="section">
-            <h2>📊 Resumen y Recomendaciones</h2>
-            <div class="ai-insight">
-                <h3>💡 Recomendaciones Principales</h3>
-                <ul>
-                    <li>Revisar y corregir todas las vulnerabilidades de alta severidad</li>
-                    <li>Implementar validación de entrada robusta</li>
-                    <li>Mejorar la gestión de excepciones</li>
-                    <li>Considerar refactoring para reducir complejidad</li>
-                    <li>Agregar más pruebas unitarias y de seguridad</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-"""
-        
         with open("ai-analysis-report.html", "w", encoding="utf-8") as f:
             f.write(html_content)
         
@@ -345,8 +306,7 @@ Responde en formato JSON:
             "high_severity_vulnerabilities": high_severity,
             "total_quality_issues": total_quality_issues,
             "files_analyzed": len(ai_results),
-            "ai_results": ai_results,
-            "static_results": static_results
+            "ai_results": ai_results
         }
         
         with open("analysis-results.json", "w") as f:
@@ -410,7 +370,7 @@ def main():
     static_results = analyzer.parse_static_analysis()
     
     # Generar reporte
-    analyzer.generate_report(ai_results, static_results)
+    analyzer.generate_report(ai_results)
     
     print("✅ Análisis completado. Reportes generados:")
     print("- ai-analysis-report.html")
