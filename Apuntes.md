@@ -60,6 +60,11 @@ Pipeline utility steps
 HTML Publisher
 Pipeline: Stage View
 
+## Mover script
+sudo mkdir -p /opt/jenkins-scripts/
+sudo cp /home/marco/thesis_project/ai_code_analyzer.py /opt/jenkins-scripts/
+sudo chown -R jenkins:jenkins /opt/jenkins-scripts/
+
 ## Java project example
 https://github.com/devopshint/jenkins-pipeline-example/tree/main/my-app
 

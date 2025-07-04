@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 
 class OpenRouterAnalyzer:
     def __init__(self):
-        self.api_key = "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"
+        self.api_key = "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"
         self.base_url = "https://openrouter.ai/api/v1"
         self.headers = {
             "Authorization": f"Bearer {self.api_key}",
@@ -353,11 +353,19 @@ Responde en formato JSON:
             json.dump(report_json, f, indent=2)
 
 def main():
+    # Obtener y mostrar el directorio actual
+    current_directory = Path.cwd()  # Alternativamente, os.getcwd() también sirve
+    print(f"📍 Directorio actual: {current_directory}")
+    
+    # Listar archivos en el directorio actual
+    print("\n📂 Archivos en el directorio actual:")
+    for file in current_directory.iterdir():
+        print(f"- {file.name}")
     analyzer = OpenRouterAnalyzer()
     
     # Leer lista de archivos Java
     print("\n🔍 Buscando archivos Java...")
-    java_files = list(Path("my-app/src").rglob("*.java"))
+    java_files = list(Path("../my-app/src").rglob("*.java"))
     print(f"Archivos Java encontrados: {len(java_files)}")
     
     if not java_files:
