@@ -65,6 +65,12 @@ sudo mkdir -p /opt/jenkins-scripts/
 sudo cp /home/marco/thesis_project/ai_code_analyzer.py /opt/jenkins-scripts/
 sudo chown -R jenkins:jenkins /opt/jenkins-scripts/
 
+## Corregir vista html en jenkins: Administrar Jenkins -> Consola de Scripts
+// Permite CSS en línea ('unsafe-inline') y mantiene otras protecciones.
+// También permite imágenes y scripts del mismo origen ('self').
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox; default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';")
+
+
 ## Java project example
 https://github.com/devopshint/jenkins-pipeline-example/tree/main/my-app
 
